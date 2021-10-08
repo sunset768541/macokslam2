@@ -31,7 +31,6 @@ To compile the project you may need to edit some configurations in the ***CMakeL
 Due to the diversity of Android system version, I am not sure weather my configuration can work well on other Android devices. So you may also need to change some configurarions in the ***AndroidManifest.xml*** to make sure that the app have the authority to use the camera and file system.
 
 ## TODOs
-
 - [ ] Improve SLAM System singleton management in 'app/src/main/cpp/native-lib.cpp' and add specific functions to allocate and release the required memory, integrate them in 'OrbTest.java'.
 
 ## Framework & Results
