@@ -38,3 +38,7 @@ The system is consisted of two parts, the ORB-SLAM2 part is ported from [FireSto
 
 
 The ORB-SLAM2 system requires lots of computing resources, So this APP can only achieve nearly 10 fps on the MI6 with a snapdragon 835 CPU. 
+
+## Acknowledgments
+- Original Android project [ORB-SLAM2-based-AR-on-Android](https://github.com/muziyongshixin/ORB-SLAM2-based-AR-on-Android) created by [@muziyongshixin](https://github.com/muziyongshixin)
+- Original [ORB_SLAM2](https://github.com/raulmur/ORB_SLAM2) project created by [Raul Mur-Artal](http://webdiis.unizar.es/~raulmur/), [Juan D. Tardos](http://webdiis.unizar.es/~jdtardos/), [J. M. M. Montiel](http://webdiis.unizar.es/~josemari/) and [Dorian Galvez-Lopez](http://doriangalvez.com/) ([DBoW2](https://github.com/dorian3d/DBoW2))
