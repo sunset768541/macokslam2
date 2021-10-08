@@ -22,7 +22,7 @@ ORB_SLAM2::System SLAM("/storage/emulated/0/SLAM/VOC/ORBvoc.bin","/storage/emula
 
 ```
 
-Due to the project is based on ORB-SLAM2, OpenCV4Androi is needed. Other third part dependence like g2o, Eigen, DBoW2 are all included in the project. As for the IDE, Android studio 2.5 or higher version is recommended.
+OpenCV 3.2.0 prebuilts for Android LLVM C++ is available [here](https://github.com/maximaging/opencv-3.2.0-android-prebuilts). Other third part dependence like g2o, Eigen, DBoW2 are all included in the project. As for the IDE, Android studio 2.5 or higher version is recommended.
 
 
 To compile the project you may need to edit some configurations in the ***CMakeLists.txt*** file, which is in the path */app/CMakeLists.txt* 
