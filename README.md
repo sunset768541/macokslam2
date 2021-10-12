@@ -32,6 +32,7 @@ Due to the diversity of Android system version, I am not sure weather my configu
 
 ## TODOs
 - [ ] Improve SLAM System singleton management in 'app/src/main/cpp/native-lib.cpp' and add specific functions to allocate and release the required memory, integrate them in 'OrbTest.java'.
+- [ ] Check the added source-code debugging in Android Studio, attach the debugger and set breakpoints in the project sources and linked OpenCV sources.
 
 ## Framework & Results
 The system is consisted of two parts, the ORB-SLAM2 part is ported from [FireStoneYS' profile](https://github.com/FireStoneYS/ORB_SLAM2_Android), which is used to get the camera's pose matrix. The other part is the OpenGL Rendering module, which use the pose matrix to render the 3D object(the earth in this project).
