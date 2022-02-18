@@ -5,15 +5,15 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
-SET(CMAKE_BUILD_TYPE Release)
+#SET(CMAKE_BUILD_TYPE release)
 
-#SET(CMAKE_BUILD_TYPE Debug)
+SET(CMAKE_BUILD_TYPE debug)
 
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fopenmp")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -static-openmp")
 
 find_library( # Sets the name of the path variable.
               log-lib
@@ -177,7 +177,7 @@ target_link_libraries(ORBSLAM2
 # (STL type: c++_static, Android ABI: arm64-v8a, release and debug modes)
 # OpenCV 3.2.0 prebuilts for Android with LLVM C++ runtime available for download
 # on: https://github.com/maximaging/opencv-3.2.0-android-prebuilts.git
-set(OpenCV_DIR /home/dev/workspace/repositories/opencv-3.2.0-android-prebuilts.git/opencv-3.2.0-android-25-arm64-v8a/${CMAKE_BUILD_TYPE})
+set(OpenCV_DIR ../opencv-3.2.0-android-prebuilts.git/opencv-3.2.0-android-25-arm64-v8a/${CMAKE_BUILD_TYPE})
 
 # Retrieve OpenCV_INCLUDE_DIRS and OpenCV_LIBS variables from OpenCVConfig.cmake
 find_package(OpenCV REQUIRED)

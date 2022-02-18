@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+android.ndkVersion "21.1.6352462"
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.0"
