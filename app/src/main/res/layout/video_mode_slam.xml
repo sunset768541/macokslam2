@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/start_slam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="加载视频和启动SLAM" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.example.ys.orbtest.video.CustomVideoView
+            android:layout_width="match_parent"
+            android:id="@+id/video_view"
+            android:layout_height="match_parent"/>
+        <android.opengl.GLSurfaceView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/glSurfaceView"
+            />
+    </FrameLayout>
+</LinearLayout>

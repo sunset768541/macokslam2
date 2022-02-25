@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -16,6 +15,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.RealMatrix;
@@ -222,8 +225,8 @@ public class OrbTest extends Activity implements CameraBridgeViewBase.CvCameraVi
             }
 
             System.out.println("总共第" + count + "帧，缩放因子为==============" + SCALE);
-            double[][] R = new double[3][3];
-            double[] T = new double[3];
+            double[][] R = new double[3][3];//提取旋转矩阵
+            double[] T = new double[3];//提取平移矩阵
 
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
@@ -271,7 +274,7 @@ public class OrbTest extends Activity implements CameraBridgeViewBase.CvCameraVi
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
-        int permission = ActivityCompat.checkSelfPermission(OrbTest.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permission = ContextCompat.checkSelfPermission(OrbTest.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
             // We don't have permission so prompt the user
