@@ -332,7 +332,7 @@ namespace ORB_SLAM2 {
                mpLoopCloser->isRunningGBA()) {
             usleep(5000);
         }
-
+        LOGE("关闭ORBSLAM2");
 //    if(mpViewer)
 //        pangolin::BindToContext("ORB-SLAM2: Map Viewer");
     }

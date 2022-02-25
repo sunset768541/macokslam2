@@ -67,7 +67,7 @@ void LoopClosing::Run()
     while(1)
     {
         // Check if there are keyframes in the queue
-        LOGI("Check New Key Frames");
+//        LOGI("Check New Key Frames");
         if(CheckNewKeyFrames())     //如果Localmap中传来新的帧
         {
             // Detect loop candidates and check covisibility consistency

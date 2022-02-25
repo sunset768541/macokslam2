@@ -94,7 +94,7 @@ bool Initializer::Initialize(const Frame &CurrentFrame, const vector<int> &vMatc
         for(size_t j=0; j<8; j++)
         {
             int randi = DUtils::Random::RandomInt(0,vAvailableIndices.size()-1);//所有mvMatches12的索引取随机
-            LOGI("randi = %d",randi);
+//            LOGI("randi = %d",randi);
             int idx = vAvailableIndices[randi];
 
             mvSets[it][j] = idx;
@@ -746,10 +746,10 @@ bool Initializer::ReconstructH(vector<bool> &vbMatchesInliers, cv::Mat &H21, cv:
         vt[bestSolutionIdx].copyTo(t21);
         vP3D = bestP3D;
         vbTriangulated = bestTriangulated;
-
+        LOGE("初始化器判断初始化成功了");
         return true;
     }
-
+    LOGE("初始化器判断初始化失败");
     return false;
 }
 //中文版多视图几何P217线性三角形法
@@ -870,7 +870,7 @@ int Initializer::CheckRT(const cv::Mat &R, const cv::Mat &t, const vector<cv::Ke
 
         Triangulate(kp1,kp2,P1,P2,p3dC1);
 
-        LOGI("Triangulated Z = %f",p3dC1.at<float>(2));
+//        LOGI("Triangulated Z = %f",p3dC1.at<float>(2));
 
         if(!isfinite(p3dC1.at<float>(0)) || !isfinite(p3dC1.at<float>(1)) || !isfinite(p3dC1.at<float>(2))) //三个值都不是无穷
         {
@@ -886,7 +886,7 @@ int Initializer::CheckRT(const cv::Mat &R, const cv::Mat &t, const vector<cv::Ke
         float dist2 = cv::norm(normal2);    //向量长度
 
         float cosParallax = normal1.dot(normal2)/(dist1*dist2); //两向量夹角cos
-        LOGI("cosParallax = %f",cosParallax);   //cosParallax基本都小于0.99998
+//        LOGI("cosParallax = %f",cosParallax);   //cosParallax基本都小于0.99998
 
         // Check depth in front of first camera (only if enough parallax, as "infinite" points can easily go to negative depth)
         if(p3dC1.at<float>(2)<=0 && cosParallax<0.99998)

@@ -265,8 +265,12 @@ cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
 
     LOGE("Start init frame!!!!");
     if(mState==NOT_INITIALIZED || mState==NO_IMAGES_YET)
-        mCurrentFrame = Frame(mImGray,timestamp,mpIniORBextractor,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
+    {
+       mCurrentFrame = Frame(mImGray,timestamp,mpIniORBextractor,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
+       LOGE(" mState=mState  mState==NOT_INITIALIZED || mState==NO_IMAGES_YET  %d\n",mState);
+    }
     else{
+        LOGE(" 开始构建Frame ");
         clock_t orb_start_time=clock();
         mCurrentFrame = Frame(mImGray,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
         clock_t orb_end_time=clock();
@@ -279,7 +283,7 @@ cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
     end = clock();
     LOGE("Track total Use Time=%f\n",((double)end-start)/CLOCKS_PER_SEC);
 
-    LOGE("Grab Image  Monocular!!!!!");
+    LOGE("Grab Image  Monocular!!!!! mState = %d\n",mState);
 
     return mCurrentFrame.mTcw.clone();
 }
@@ -600,7 +604,7 @@ void Tracking::StereoInitialization()
 
 void Tracking::MonocularInitialization()
 {
-
+  LOGE("Start MonocularInitialization");
     if(!mpInitializer)
     {
         LOGE("current frame key point size %d",mCurrentFrame.mvKeys.size());
@@ -638,6 +642,7 @@ void Tracking::MonocularInitialization()
         ORBmatcher matcher(0.9,true);
         int nmatches = matcher.SearchForInitialization(mInitialFrame,mCurrentFrame,mvbPrevMatched,mvIniMatches,100);
         LOGE("nmatches size %d",nmatches);
+        LOGE("mvIniMatches size %d",mvIniMatches.size());
         // Check if there are enough correspondences
         if(nmatches<100)
         {
@@ -691,6 +696,7 @@ void Tracking::CreateInitialMapMonocular()
     mpMap->AddKeyFrame(pKFcur);
 
     // Create MapPoints and asscoiate to keyframes
+     LOGE(" mvIniMatches的数量 %d",mvIniMatches.size());
     for(size_t i=0; i<mvIniMatches.size();i++)
     {
         if(mvIniMatches[i]<0)

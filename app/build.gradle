@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-def lib_distribution_root = '../distribution'
 android {
     signingConfigs {
         www {
@@ -35,17 +34,18 @@ android {
         }
     }
     buildTypes {
-        release {
-            minifyEnabled false
-            signingConfig signingConfigs.www
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+
         debug {
-            applicationIdSuffix ".debug"
             debuggable true
             minifyEnabled false
             signingConfig signingConfigs.www
             proguardFiles getDefaultProguardFile('proguard-android.txt')
+        }
+        release {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.www
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     externalNativeBuild {

@@ -59,7 +59,7 @@ void LocalMapping::Run()
     while(1)
     {
         // Tracking will see that Local Mapping is busy
-        LOGI("Local Mapping is busy, Set Accept Key Frames False!!!");
+//        LOGI("Local Mapping is busy, Set Accept Key Frames False!!!");
         SetAcceptKeyFrames(false);
 
         // Check if there are keyframes in the queue
@@ -117,7 +117,7 @@ void LocalMapping::Run()
         ResetIfRequested();
 
         // Tracking will see that Local Mapping is busy
-        LOGI(" Set Accept Key Frames !!!");
+//        LOGI(" Set Accept Key Frames !!!");
         SetAcceptKeyFrames(true);
 
         if(CheckFinish())

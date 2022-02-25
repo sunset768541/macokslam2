@@ -205,6 +205,7 @@ public class OrbTest extends Activity implements CameraBridgeViewBase.CvCameraVi
      */
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         Mat rgb = inputFrame.rgba();
+        Log.d(TAG,"查看输入到SLAM中的数据: "+rgb);
         float[] poseMatrix = CVTest(rgb.getNativeObjAddr()); //从slam系统获得相机位姿矩阵
 
         if (poseMatrix.length != 0) {
