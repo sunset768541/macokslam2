@@ -43,10 +43,3 @@ The ORB-SLAM2 system requires lots of computing resources, So this APP can only 
 ## Acknowledgments
 - Original Android project [ORB-SLAM2-based-AR-on-Android](https://github.com/muziyongshixin/ORB-SLAM2-based-AR-on-Android) created by [@muziyongshixin](https://github.com/muziyongshixin)
 - Original [ORB_SLAM2](https://github.com/raulmur/ORB_SLAM2) project created by [Raul Mur-Artal](http://webdiis.unizar.es/~raulmur/), [Juan D. Tardos](http://webdiis.unizar.es/~jdtardos/), [J. M. M. Montiel](http://webdiis.unizar.es/~josemari/) and [Dorian Galvez-Lopez](http://doriangalvez.com/) ([DBoW2](https://github.com/dorian3d/DBoW2))
-
-
-编译注意
-1、要把opencv-3.2.0-android-prebuild.git/opencv-3.2.0-android-25-arm64-v8a/debug/OpenCVConfig.cmake中的set(OpenCV_INCLUDE_DIRS 中写的路径改为本电脑的路径
-2、要把opencv-3.2.0-android-prebuild.git/opencv-3.2.0-android-25-arm64-v8a/debug/OpenCVModules.cmake 中的G:/Work/Project/macokslam2/ 目录替换问本项目所在目录
-3、要对G:\Software\AndroidSDK\ndk\21.1.6352462\toolchains\llvm\prebuilt\windows-x86_64\sysroot\usr\lib\aarch64-linux-a
-     ndroid  目录进行全局替换
