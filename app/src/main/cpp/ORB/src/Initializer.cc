@@ -722,7 +722,7 @@ bool Initializer::ReconstructH(vector<bool> &vbMatchesInliers, cv::Mat &H21, cv:
         vector<cv::Point3f> vP3Di;
         vector<bool> vbTriangulatedi;
         int nGood = CheckRT(vR[i],vt[i],mvKeys1,mvKeys2,mvMatches12,vbMatchesInliers,K,vP3Di, 4.0*mSigma2, vbTriangulatedi, parallaxi);
-
+        LOGE("第 %d 次，nGood = %d",i,nGood);//前4次都是172 后4次都是0
         if(nGood>bestGood)
         {
             secondBestGood = bestGood;

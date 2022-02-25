@@ -32,6 +32,12 @@ import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import wseemann.media.FFmpegMediaMetadataRetriever;
 
 public class VideoModeSLAM extends Activity {
@@ -164,15 +170,20 @@ public class VideoModeSLAM extends Activity {
             FFmpegMediaMetadataRetriever mmr = new FFmpegMediaMetadataRetriever();
             mmr.setDataSource(VideoSource);
             while (mVideoView.isPlaying()) {
-                Bitmap b = mmr.getFrameAtTime(mVideoView.getCurrentPosition(), FFmpegMediaMetadataRetriever.OPTION_CLOSEST); // frame at 2 seconds
+                int zhen = mVideoView.getCurrentPosition()*1000;
+                Log.d(TAG,"获取帧"+zhen);
+                Bitmap b = mmr.getFrameAtTime(zhen, FFmpegMediaMetadataRetriever.OPTION_CLOSEST); // frame at 2 seconds
                 onCameraFrame(b);
             }
-            Log.d(TAG,"  SLAMWORKER finish");
+
+
             mmr.release();
             ShutDown();
+            Log.d(TAG,"  SLAMWORKER finish");
         }
     }
-
+    private int count = 0;
+    ArrayList<Bitmap> bitmaps = new ArrayList<>();
     /**
      * 处理图像的函数，这个函数在相机刷新每一帧都会调用一次，而且每次的输入参数就是当前相机视图信息
      * * @param inputFrame
@@ -180,10 +191,13 @@ public class VideoModeSLAM extends Activity {
      * @return
      */
     public Mat onCameraFrame(Bitmap inputFrame) {
+//        saveBitmap(count,inputFrame);
+//        count++;
+//        bitmaps.add(inputFrame);
         Mat out = new Mat();
-        Log.d(TAG,"查看输入到SLAM中的数据: inputFrame "+inputFrame.getByteCount()+" height "+inputFrame.getHeight());
+//        Log.d(TAG,"查看输入到SLAM中的数据: inputFrame "+inputFrame.getByteCount()+" height "+inputFrame.getHeight());
         Utils.bitmapToMat(inputFrame, out);
-        Log.d(TAG,"查看输入到SLAM中的数据: "+out);
+//        Log.d(TAG,"查看输入到SLAM中的数据: "+out);
         float[] poseMatrix = CVTest(out.getNativeObjAddr()); //从slam系统获得相机位姿矩阵
         isSlamRunning = true;
         if (poseMatrix.length != 0) {
@@ -290,6 +304,39 @@ public class VideoModeSLAM extends Activity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_EXTERNAL_STORAGE) {
             finish();
+        }
+    }
+
+
+    public  void saveBitmap(int bitName, Bitmap mBitmap) {
+        File f = new File("/sdcard/Download/SLAM/v2/" + bitName + ".png");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FileOutputStream fOut = null;
+        try {
+            fOut = new FileOutputStream(f);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (mBitmap == null){
+            Log.e(TAG,"输入的图片为空的");
+        }
+        if (fOut == null){
+            Log.e(TAG,"输出刘创建失败");
+        }
+        mBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+        try {
+            fOut.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            fOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
